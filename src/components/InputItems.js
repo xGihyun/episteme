@@ -24,7 +24,7 @@ export const moleTable = [
   {
     id: 5,
     data: "mass-vol-solution",
-    placeholder: "Solution (g or ml)"
+    placeholder: "Mass/Vol Solution (g or ml)"
   },
   {
     id: 6,
