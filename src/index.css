@@ -1,0 +1,92 @@
+*, *::before, *::after{
+  box-sizing: border-box;
+  font-family: torus;
+}
+
+:root{
+  --body: rgb(20, 20, 20);
+  --content: rgb(36, 34, 42);
+  --main-color: rgb(86, 57, 172);
+  --home-purple: rgb(86, 57, 172);
+  --home-nav: rgb(46, 41, 61);
+  --home-nav-font: rgb(179, 166, 217);
+  --home-nav-select: rgb(140, 102, 255);
+  --task-bg: rgb(48, 46, 56);
+  --task-text: rgb(194, 184, 202);
+  --task-assignor: rgb(167, 146, 185);
+  --task-type-border1: rgb(172, 165, 195);
+  --task-type-border2: rgb(209, 200, 238);
+}
+
+body{
+  margin: 0;
+  padding: 0;
+  background: var(--body);
+  color: white;
+}
+
+h1{
+  text-align: center;
+}
+
+.form{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+
+.form{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.form-container{
+  padding: 0 20%;
+  flex: 50%;
+}
+
+.form input{
+  height: 30px;
+  background: none;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid white;
+  color: white;
+  padding: 20px;
+}
+
+.form input:focus{
+  color: rgb(0, 238, 255);
+  border-bottom: 1px solid rgb(0, 238, 255);
+}
+
+.form input:focus::placeholder{
+  color: rgb(0, 181, 194);
+}
+
+.btn-container{
+  display: flex;
+  justify-content: center;
+}
+
+.submit-btn{
+  height: 50px;
+  display: flex;
+  margin: 2rem 0;
+  align-items: center;
+  border-radius: 20px;
+  outline: none;
+  border: none;
+  padding: 20px;
+  cursor: pointer;
+}
+
+.answers{
+  display: flex;
+  justify-content: center;
+}
