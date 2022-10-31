@@ -129,7 +129,7 @@ const MoleTable = () => {
         </form>
       </div>
       <div className='btn-container'>
-        <button className='submit-btn' type='button' onClick={inputGiven}>test</button>
+        <button className='submit-btn' type='button' onClick={inputGiven}>Submit</button>
       </div>
       <div className='answers'>
         <ul className='answer-list'>
