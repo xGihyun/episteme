@@ -61,7 +61,7 @@ export const moleTableFormulas = {
     } else if (mwSolvent != null && nSolvent != null) {
       return mwSolvent * nSolvent
     } else if(nSolute != null && molality != null){
-      return nSolute / molality
+      return (nSolute / molality) * 1000 // From kg to grams
     }
     return null
   },
@@ -77,7 +77,7 @@ export const moleTableFormulas = {
     if (massSolute != null && massSolvent != null) {
       return massSolute + massSolvent;
     } else if(nSolute != null && molarity != null){
-      return nSolute / molarity
+      return (nSolute / molarity) * 1000 // From kg to grams
     }
     return null
   },
