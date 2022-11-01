@@ -1,5 +1,13 @@
-// Formulas
+// Round off
+export const roundOff = (num) => {
+  for(let i in num){
+    if(num[i] != null){
+      num[i] = parseFloat(num[i].toFixed(2))
+    }
+  }
+}
 
+// Formulas
 export const moleTableFormulas = {
   // Solute
   nSolute: (massSolute, mwSolute, nSolvent, nfSolvent, nfSolute, molality, massSolvent, molarity, massVolSolution) => {

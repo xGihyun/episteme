@@ -1,6 +1,7 @@
 import React from 'react'
 import { moleTable } from '../components/InputItems'
-import { moleTableFormulas as formulas } from '../components/Formulas'
+import { roundOff, moleTableFormulas as formulas } from '../components/Formulas'
+// import Dropdown from '../components/Dropdown'
 
 const MoleTable = () => {
 
@@ -53,13 +54,16 @@ const MoleTable = () => {
     clearAnswers(answerList)
 
     // Loop to solve everything until values != null, loop limit is only up to 10 to prevent infinite loops when problem is unsolvable
+    // Maybe find a way to make this better?
     for(let i = 0; i < 10; i++){
+      roundOff(givenValues)
       solveTable(givenValues)
     }
 
     // Append to DOM
+    // Might create a separate component for appending answers
     for(let key in givenValues){
-      answerList.innerHTML += `<li>${key}: ${givenValues[key]}</li>`
+      answerList.innerHTML += `<li>${key}: ${givenValues[key].toFixed(2)}</li>`
     }
   }
 
@@ -120,24 +124,35 @@ const MoleTable = () => {
       <div className='form-container'>
         <form className='form' name='input-given'>
           {moleTable.map((input) => {
+            if(input.data === "mass-vol-solution"){
+              return (
+                <div key={input.id} className='input-container'>
+                  <input type="text" data-input={input.data} required></input>
+                  <span>{input.placeholder}</span>
+                  {/* Trying to put a dropdown to select between different units of measurement for solution */}
+                  {/* {<Dropdown />} */}
+                </div>
+              )
+            }
             return (
               <div key={input.id} className='input-container'>
-                <input type="text" data-input={input.data} placeholder={input.placeholder} />
+                <input type="text" data-input={input.data} required />
+                <span>{input.placeholder}</span>
               </div>
             )
           })}
         </form>
       </div>
       <div className='btn-container'>
-        <button className='submit-btn' type='button' onClick={inputGiven}>Submit</button>
+        <button className='submit-btn' type='button' onClick={inputGiven}>
+          <span>Submit</span>
+        </button>
       </div>
       <div className='answers'>
         <ul className='answer-list'>
-
         </ul>
       </div>
     </>
-    
   )
 }
 

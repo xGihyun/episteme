@@ -3,9 +3,9 @@ import { NavLink } from 'react-router-dom'
 
 const Navigate = () => {
   return (
-    <div>
+    <div className='topic-container'>
       <NavLink to='/mole-table' className={({isActive}) => (isActive ? 'topic-btn active' : 'topic-btn')}>
-        Mole Fraction, Molality, Molarity, & Normality
+        Table Completion
       </NavLink>
     </div>
   )
