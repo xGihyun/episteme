@@ -1,7 +1,6 @@
 import React from 'react'
 import { moleTable } from '../components/InputItems'
 import { roundOff, moleTableFormulas as formulas } from '../components/Formulas'
-import { NavLink } from 'react-router-dom'
 // import Dropdown from '../components/Dropdown'
 
 const MoleTable = () => {
@@ -120,8 +119,6 @@ const MoleTable = () => {
     }
   }
 
-  const siteName = document.querySelector('.site-name')
-
   return (
     <>
       <div className='form-container'>
@@ -147,10 +144,9 @@ const MoleTable = () => {
         </form>
       </div>
       <div className='btn-container'>
-        <NavLink to='/surprise' className={({isActive}) => (isActive ? 'submit-btn active' : 'submit-btn')} 
-        onClick={() => {siteName.innerHTML = "Happy birthday"}}>
+        <button className='submit-btn' onClick={inputGiven}>
           <span>Submit</span>
-        </NavLink>
+        </button>
       </div>
       <div className='answers'>
         <ul className='answer-list'>
