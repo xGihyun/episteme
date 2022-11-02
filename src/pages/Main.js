@@ -7,7 +7,9 @@ const Main = () => {
       <Link to='/' className='site-name'>
         <h1>Episteme</h1>
       </Link>
-      <Outlet />
+      <div className='container'>
+        <Outlet />
+      </div>
     </div>
   )
 }

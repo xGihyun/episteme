@@ -1,13 +1,23 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { topicItems } from './TopicItems'
 
 const Navigate = () => {
   
   return (
     <div className='topic-container'>
-      <NavLink to='/mole-table' className={({isActive}) => (isActive ? 'topic-btn active' : 'topic-btn')}>
-        Table Completion
-      </NavLink>
+      <div className='topic-grid'>
+        {topicItems.map((topic) => {
+          return (
+            <NavLink to={topic.path} className={({isActive}) => (isActive ? 'topic-card active' : 'topic-card')}>
+              <div className='card-body'>
+                <h1>{topic.name}</h1>
+                <p>{topic.description}</p>
+              </div>
+            </NavLink>
+          )
+        })}
+      </div>
     </div>
   )
 }
