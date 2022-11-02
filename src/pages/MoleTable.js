@@ -1,7 +1,8 @@
 import React from 'react'
 import { moleTable } from '../components/InputItems'
-import { roundOff, moleTableFormulas as formulas } from '../components/Formulas'
-// import Dropdown from '../components/Dropdown'
+import { roundOff } from '../components/Formulas'
+import { solveTable } from '../components/Solve'
+import Dropdown from '../components/Dropdown'
 
 const MoleTable = () => {
 
@@ -49,9 +50,16 @@ const MoleTable = () => {
       normality: Number(tableInputs.normality.value) || null
     }
 
-    const answerList = document.querySelector(".answer-list")
+    const answerList = document.querySelector('.answer-list')
+    const unit = document.querySelector('.select')
     
+    // Clear answers after submitting new inputs
     clearAnswers(answerList)
+
+    // Convert solution to g / ml if the given solution is in kg / L
+    if(givenValues.massVolSolution != null && (unit.value === 'kg' || unit.value === 'L')){
+      givenValues.massVolSolution *= 1000
+    }
 
     // Loop to solve everything until values != null, loop limit is only up to 10 to prevent infinite loops when problem is unsolvable
     // Maybe find a way to make this better?
@@ -68,56 +76,7 @@ const MoleTable = () => {
   }
 
   // Literally solve for everything until none of the values == null
-  const solveTable = (val) => {
-
-    // Solve for mass solute, mass solvent, and mass solution
-    if(val.massSolute == null){
-      val.massSolute = formulas.massSolute(val.massVolSolution, val.massSolvent, val.mwSolute, val.nSolute)
-    } 
-    if(val.massSolvent == null){
-      val.massSolvent = formulas.massSolvent(val.massVolSolution, val.massSolute, val.mwSolvent, val.nSolvent, val.nSolute, val.molality)
-    } 
-    if(val.massVolSolution == null){
-      val.massVolSolution = formulas.massVolSolution(val.massSolute, val.massSolvent, val.nSolute, val.molarity)
-    }
-    
-    // Solve for mole solute and mole solvent
-    if(val.nSolute == null){
-      val.nSolute = formulas.nSolute(val.massSolute, val.mwSolute, val.nSolvent, val.nfSolvent, val.nfSolute, val.molality, val.massSolvent, val.molarity, val.massVolSolution)
-    }
-    if(val.nSolvent == null){
-      val.nSolvent = formulas.nSolvent(val.massSolvent, val.mwSolvent, val.nSolute, val.nfSolute, val.nfSolvent)
-    }
-    
-    // Solve for mole fraction
-    if(val.nfSolute == null){
-      val.nfSolute = formulas.nfSolute(val.nSolute, val.nSolvent, val.nfSolvent)
-    }
-    if(val.nfSolvent == null){
-      val.nfSolvent = formulas.nfSolvent(val.nSolute, val.nSolvent, val.nfSolute)
-    }
-
-    // Molality
-    if(val.molality == null){
-      val.molality = formulas.molality(val.nSolute, val.massSolvent)
-    }
-
-    // Molarity
-    if(val.molarity == null){
-      val.molarity = formulas.molarity(val.nSolute, val.massVolSolution)
-    }
-
-    // Normality
-    if(val.eqWeight == null){
-      val.eqWeight = formulas.equivalentWeight(val.mwSolute, val.eqPerMole)
-    }
-    if(val.eqOfSolute == null){
-      val.eqOfSolute = formulas.equivalentsOfSolute(val.massSolute, val.eqWeight)
-    }
-    if(val.normality == null){
-      val.normality = formulas.normality(val.eqOfSolute, val.eqPerMole, val.molarity, val.massVolSolution)
-    }
-  }
+  
 
   return (
     <>
@@ -127,16 +86,15 @@ const MoleTable = () => {
             if(input.data === "mass-vol-solution"){
               return (
                 <div key={input.id} className='input-container'>
-                  <input type="text" data-input={input.data} required></input>
+                  <input title='' type="text" data-input={input.data} required />
                   <span>{input.placeholder}</span>
-                  {/* Trying to put a dropdown to select between different units of measurement for solution */}
-                  {/* {<Dropdown />} */}
+                  <Dropdown />
                 </div>
               )
             }
             return (
               <div key={input.id} className='input-container'>
-                <input type="text" data-input={input.data} required />
+                <input title='' type="text" data-input={input.data} required />
                 <span>{input.placeholder}</span>
               </div>
             )

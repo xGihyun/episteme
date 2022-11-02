@@ -8,6 +8,7 @@ export const roundOff = (num) => {
 }
 
 // Formulas
+// Table completion
 export const moleTableFormulas = {
   // Solute
   nSolute: (massSolute, mwSolute, nSolvent, nfSolvent, nfSolute, molality, massSolvent, molarity, massVolSolution) => {
@@ -81,6 +82,7 @@ export const moleTableFormulas = {
     }
     return null
   },
+  // Solution
   massVolSolution: (massSolute, massSolvent, nSolute, molarity) => {
     if (massSolute != null && massSolvent != null) {
       return massSolute + massSolvent;
@@ -89,7 +91,7 @@ export const moleTableFormulas = {
     }
     return null
   },
-  // Molality - Normality
+  // Molality -> Normality
   molality: (nSolute, massSolvent) => {
     if(nSolute != null && massSolvent != null){
       return (nSolute) / (massSolvent / 1000)
@@ -97,7 +99,6 @@ export const moleTableFormulas = {
     return null
   },
   molarity: (nSolute, massVolSolution) => {
-    // Mass solution can be Volume solution since Aqueous solutions is 1g/1ml
     if(nSolute != null && massVolSolution != null){
       return (nSolute) / (massVolSolution / 1000)
     }

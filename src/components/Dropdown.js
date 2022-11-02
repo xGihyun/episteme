@@ -4,12 +4,17 @@ const Dropdown = () => {
 
   const [selected, setSelect] = useState()
 
+  const handleChange = (e) => {
+    setSelect(e.target.value)
+  }
+  
   return (
-    <div  className='dropdown'>
-      {selected}
-      <select title='unit' value={selected} onChange={e => setSelect(e.target.value)}>
+    <div className='dropdown'>
+      <select className='select' title='' value={selected} onChange={handleChange}>
         <option>g</option>
         <option>kg</option>
+        <option>ml</option>
+        <option>L</option>
       </select>
     </div>
   )

@@ -1,10 +1,12 @@
 import React from 'react'
-import { Outlet } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom'
 
 const Main = () => {
   return (
     <div>
-      <h1 className='site-name'>Episteme</h1>
+      <Link to='/' className='site-name'>
+        <h1>Episteme</h1>
+      </Link>
       <Outlet />
     </div>
   )
