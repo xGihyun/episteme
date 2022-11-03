@@ -4,7 +4,7 @@ export const moleTable = [
   {
     id: 1,
     data: "mass-solute",
-    placeholder: "Mass Solute (g)"
+    placeholder: "Mass Solute"
   },
   {
     id: 2,
@@ -14,7 +14,7 @@ export const moleTable = [
   {
     id: 3,
     data: "mass-solvent",
-    placeholder: "Mass Solvent (g)"
+    placeholder: "Mass Solvent"
   },
   {
     id: 4,

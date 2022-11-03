@@ -1,8 +1,29 @@
 import React from 'react'
+import { moleTable } from './InputItems'
+import  copy  from '../images/copy.png'
 
-const Answers = () => {
+const Answers = ({ open, answers }) => {
+  
+  if(!open){return null}
+
   return (
-    <div>Answers</div>
+    <div className='answers-container'>
+      <div className='answers'>
+        {Object.keys(answers).map((answer, index) => {
+          return (
+            <div className='answer' key={moleTable[index].id}>
+              <span className='label'>{moleTable[index].placeholder}:</span>
+              <div className='number'>
+                <span>{answers[answer] === null ? '-----' : answers[answer].toFixed(2)}</span>
+                <img src={copy} alt="copy" className='copy-btn' 
+                onClick={() => {navigator.clipboard.writeText(answers[answer].toFixed(2))}} 
+                />
+              </div>
+            </div>
+          )
+        })}
+      </div>
+    </div>
   )
 }
 
