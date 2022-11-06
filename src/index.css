@@ -14,6 +14,7 @@
   --main-color: rgb(222, 75, 0);
   --light-gray: rgba(90, 90, 90, 0.5);
   --font-gray: rgb(200, 200, 200);
+  --font-gray2: rgb(100, 100, 100);
   --card-border: rgb(45, 45, 45);
   --card-border2: rgb(50, 50, 50);
   --card-body: rgb(30, 30, 30);
@@ -27,10 +28,21 @@ body{
   color: white;
 }
 
-.site-name{
+
+/* Navbar */
+
+nav{
+  height: 90px;
+  width: 100%;
+  background-color: var(--content);
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: var(--main-color) 0px 0px 20px 0px;
+  z-index: 99;
+}
+
+.site-name{
   text-decoration: none;
   color: white;
 }
@@ -39,8 +51,7 @@ body{
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 5px;
-  margin: 2rem 0;
-  
+  margin: 0;
 }
 
 .container{
@@ -50,7 +61,7 @@ body{
 }
 
 .content-wrap{  
-  padding: 0 10vw;
+  padding: 4rem 10vw;
 }
 
 /* Main page */
@@ -59,7 +70,7 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2rem 0;
+  
   flex-wrap: wrap;
 }
 
@@ -118,18 +129,20 @@ body{
 .form-container{
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  background-color: var(--content);
+  border-radius: 10px;
+  border: 1px solid var(--card-border);
+  margin-bottom: 2rem;
 }
 
 .form{
-  background-color: var(--content);
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: 2rem 3rem;
   padding: 3rem;
-  margin-top: 2rem;
-  border-radius: 10px;
 }
 
 .input-container{
@@ -176,6 +189,25 @@ body{
   background-color: var(--main-color);
   transform: translateX(10px) translateY(-100%);
   font-size: 0.8rem;
+}
+
+.round-off{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.switch{
+  display: flex;
+  gap: 0.8rem;
+}
+
+.round-off p{
+  font-size: 0.9rem;
+  color: var(--font-gray2);
+  margin: 0;
+  margin-top: 0.75rem;
 }
 
 /* Select unit dropdown */
@@ -306,6 +338,7 @@ footer{
   padding: 2rem 0;
   position: absolute;
   bottom: 0;
+  box-shadow: var(--main-color) 0px 0px 20px 0px;
 }
 
 footer p{

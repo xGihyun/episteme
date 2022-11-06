@@ -52,7 +52,7 @@ export const solveTable = (val) => {
   }
 }
 
-export const inputGiven = () => {
+export const inputGiven = (round) => {
 
   // Inputs
   const tableInputs = {
@@ -112,7 +112,9 @@ export const inputGiven = () => {
   // Loop to solve everything until values != null, loop limit is only up to 10 to prevent infinite loops when problem is unsolvable
   // Maybe find a way to make this better?
   for(let i = 0; i < 10; i++){
-    roundOff(givenValues)
+    if(round){
+      roundOff(givenValues)
+    }
     solveTable(givenValues)
   }
   
