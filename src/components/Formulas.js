@@ -1,8 +1,10 @@
+import { round } from 'mathjs'
+
 // Round off
 export const roundOff = (num) => {
   for(let i in num){
     if(num[i] != null){
-      num[i] = parseFloat(num[i].toFixed(2))
+      num[i] = round(parseFloat(num[i]), 2)
     }
   }
 }
@@ -31,11 +33,13 @@ export const moleTableFormulas = {
     }
     return null
   },
-  massSolute: (massVolSolution, massSolvent, mwSolute, nSolute) => {
+  massSolute: (massVolSolution, massSolvent, mwSolute, nSolute, eqWeight, normality) => {
     if (massVolSolution != null && massSolvent != null) {
        return massVolSolution - massSolvent
     } else if (mwSolute != null && nSolute != null) {
        return mwSolute * nSolute 
+    } else if(massVolSolution != null && eqWeight != null && normality != null){
+      return ((massVolSolution * eqWeight * normality) / 1000)
     }
     return null
   },
@@ -87,7 +91,7 @@ export const moleTableFormulas = {
     if (massSolute != null && massSolvent != null) {
       return massSolute + massSolvent;
     } else if(nSolute != null && molarity != null){
-      return (nSolute / molarity) * 1000 // From kg to grams
+      return (nSolute / molarity) * 1000 // From L to ml
     }
     return null
   },

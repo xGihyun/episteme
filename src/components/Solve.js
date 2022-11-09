@@ -5,7 +5,7 @@ export const solveTable = (val) => {
 
   // Solve for mass solute, mass solvent, and mass solution
   if(val.massSolute == null){
-    val.massSolute = formulas.massSolute(val.massVolSolution, val.massSolvent, val.mwSolute, val.nSolute)
+    val.massSolute = formulas.massSolute(val.massVolSolution, val.massSolvent, val.mwSolute, val.nSolute, val.eqWeight, val.normality)
   } 
   if(val.massSolvent == null){
     val.massSolvent = formulas.massSolvent(val.massVolSolution, val.massSolute, val.mwSolvent, val.nSolvent, val.nSolute, val.molality)
