@@ -198,9 +198,22 @@ nav{
   flex-direction: column;
 }
 
-.switch{
+.round-off .input{
   display: flex;
   gap: 0.8rem;
+  align-items: center;
+}
+
+.round-off .input input{
+  height: 30px;
+  font-size: 1rem;
+  background: none;
+  outline: none;
+  border: 1px solid transparent;
+  border-bottom: 1px solid var(--light-gray);
+  color: white;
+  padding: 1.5rem;
+  flex: 1 1;
 }
 
 .round-off p{

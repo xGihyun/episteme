@@ -1,12 +1,9 @@
-import { round } from 'mathjs'
+// Round off to number of decimal places
+export const decimalPlaces = () => {
+  const decimal = document.querySelector("[data-input='round-off']")
+  const decimalValue = decimal.value || 0
 
-// Round off
-export const roundOff = (num) => {
-  for(let i in num){
-    if(num[i] != null){
-      num[i] = round(parseFloat(num[i]), 2)
-    }
-  }
+  return decimalValue
 }
 
 // Formulas
@@ -109,10 +106,10 @@ export const moleTableFormulas = {
     return null
   },
   normality: (eqOfSolute, eqPerMole, molarity, massVolSolution) => {
-    if(eqOfSolute != null && massVolSolution != null){
-      return ((eqOfSolute) / (massVolSolution / 1000))
-    } else if(molarity != null && eqPerMole != null){
+    if(molarity != null && eqPerMole != null){ // Shortcut formula
       return molarity * eqPerMole
+    } else if(eqOfSolute != null && massVolSolution != null){
+      return ((eqOfSolute) / (massVolSolution / 1000))
     }
     return null
   },

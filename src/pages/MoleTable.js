@@ -8,11 +8,6 @@ const MoleTable = () => {
 
   const [isOpen, setIsOpen] = useState(false)
   const [answers, setAnswers] = useState(null)
-  const [roundOff, setRoundOff] = useState(false)
-
-  const handleRoundOff = () => {
-    setRoundOff(current => !current)
-  }
 
   return (
     <>
@@ -37,19 +32,19 @@ const MoleTable = () => {
           })}
         </form>
         <div className='round-off'>
-          <div className='switch' >
+          <div className='input-container'>
+            <input title='' type='text' data-input='round-off' required />
             <span>Round Off</span>
-            <input type='checkbox' value={roundOff} onChange={handleRoundOff} title='' />
           </div>
-          <p>(Resubmit after toggling Round Off)</p>
+          <p>(Input Number of Decimal Places)</p>
         </div>
         <div className='btn-container'>
-          <button className='submit-btn' onClick={() => {setAnswers(inputGiven(roundOff)); setIsOpen(true)}}>
+          <button className='submit-btn' onClick={() => {setAnswers(inputGiven()); setIsOpen(true)}}>
             <span>Submit</span>
           </button>
         </div>
       </div>
-      <Answers open={isOpen} answers={answers} roundOff={roundOff} />
+      <Answers open={isOpen} answers={answers} />
     </>
   )
 }
