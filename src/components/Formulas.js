@@ -1,12 +1,93 @@
+import { round } from "mathjs"
+
 // Round off to number of decimal places
 export const decimalPlaces = () => {
   const decimal = document.querySelector("[data-input='round-off']")
   const decimalValue = decimal.value || 0
 
-  return decimalValue
+  return Number(decimalValue)
 }
 
-// Formulas
+export const solveValues = (val, decimalPlaces) => {
+  let items = [
+    {
+      data: 'massSolute',
+      formula: moleTableFormulas.massSolute(val.massVolSolution, val.massSolvent, val.mwSolute, val.nSolute, val.eqWeight, val.normality),
+      solved: false
+    },
+    {
+      data: 'massSolvent',
+      formula: moleTableFormulas.massSolvent(val.massVolSolution, val.massSolute, val.mwSolvent, val.nSolvent, val.nSolute, val.molality),
+      solved: false
+    },
+    {
+      data: 'massVolSolution',
+      formula: moleTableFormulas.massVolSolution(val.massSolute, val.massSolvent, val.nSolute, val.molarity),
+      solved: false
+    },
+    {
+      data: 'nSolute',
+      formula: moleTableFormulas.nSolute(val.massSolute, val.mwSolute, val.nSolvent, val.nfSolvent, val.nfSolute, val.molality, val.massSolvent, val.molarity, val.massVolSolution),
+      solved: false
+    },
+    {
+      data: 'nSolvent',
+      formula: moleTableFormulas.nSolvent(val.massSolvent, val.mwSolvent, val.nSolute, val.nfSolute, val.nfSolvent),
+      solved: false
+    },
+    {
+      data: 'nfSolute',
+      formula: moleTableFormulas.nfSolute(val.nSolute, val.nSolvent, val.nfSolvent),
+      solved: false
+    },
+    {
+      data: 'nfSolvent',
+      formula: moleTableFormulas.nfSolvent(val.nSolute, val.nSolvent, val.nfSolute),
+      solved: false
+    },
+    {
+      data: 'molality',
+      formula: moleTableFormulas.molality(val.nSolute, val.massSolvent),
+      solved: false
+    },
+    {
+      data: 'molarity',
+      formula: moleTableFormulas.molarity(val.nSolute, val.massVolSolution),
+      solved: false
+    },
+    {
+      data: 'eqWeight',
+      formula: moleTableFormulas.equivalentWeight(val.mwSolute, val.eqPerMole),
+      solved: false
+    },
+    {
+      data: 'eqOfSolute',
+      formula: moleTableFormulas.equivalentsOfSolute(val.massSolute, val.eqWeight),
+      solved: false
+    },
+    {
+      data: 'normality',
+      formula: moleTableFormulas.normality(val.eqOfSolute, val.eqPerMole, val.molarity, val.massVolSolution),
+      solved: false
+    }
+  ]
+
+  // Loop to solve, this might be very inefficient though
+  for(let i in val){
+    items.forEach(e => {
+      if(i === e.data){
+        if(val[i] === null){
+          val[i] = e.formula
+          if(val[i] !== null){
+            val[i] = round(val[i], decimalPlaces)
+          }
+        }
+      }
+    })
+  }
+}
+
+// List of formulas
 // Table completion
 export const moleTableFormulas = {
   // Solute
@@ -14,7 +95,7 @@ export const moleTableFormulas = {
     if (massSolute != null && mwSolute != null) { // main formula
       return massSolute/mwSolute
     } else if (nSolvent != null && nfSolvent != null) { // derived formula from nfsolvent
-      return  (nSolvent/nfSolvent) - nSolvent 
+      return (nSolvent/nfSolvent) - nSolvent 
     } else if (nSolvent != null && nfSolute != null) { // derived formula from nfsolute, parenthesis very improtnat
       return (nfSolute * nSolvent)/ (1 - nfSolute)
     } else if(molality != null && massSolvent != null){
